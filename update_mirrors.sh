@@ -1,0 +1,14 @@
+#!/bin/bash
+
+NEW_LIST_LOCATION='/tmp/mirrorlist.ranked'
+PACMAN_LIST_LOCATION='/etc/pacman.d/mirrorlist'
+
+if [ -f $NEW_LIST_LOCATION ]
+then
+    rm $NEW_LIST_LOCATION
+fi
+
+rankmirrors $PACMAN_LIST_LOCATION > $NEW_LIST_LOCATION
+mv $PACMAN_LIST_LOCATION $PACMAN_LIST_LOCATION'.old'
+mv $NEW_LIST_LOCATION $PACMAN_LIST_LOCATION
+
